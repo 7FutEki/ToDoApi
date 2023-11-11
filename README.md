@@ -22,12 +22,13 @@
   </ul>
 </ul>
 
-  
-   
-   
-   
-  
-Методы: 
-User/CreateAccount: при тестировании через Swagger необходимо ввести userName, name и birthday. 
-ToDo/AddToDo: при тестировании через Swagger необходимо ввести name, userId, createdDate и priority. 
-ToDo/GetAllToDo: при тестировании через Swagger необходимо ввести parameter и login. Parameter представляет из себя данные типа bool. Значение true означает сортировку по дате (от самой давней, до самой недавней), а значение false - сортировку по приоритетности (от самых важных, до неважных). Login - логин пользователя, записи которого надо вернуть. 
+
+<h3>Методы:</h3>
+<ul>
+  <li>User/CreateAccount: при тестировании через Swagger необходимо ввести userName, name и birthday. </li>
+  <li>ToDo/AddToDo: при тестировании через Swagger необходимо ввести name, userId, createdDate и priority. </li>
+  <li>ToDo/GetAllToDo: при тестировании через Swagger необходимо ввести parameter и login. Parameter представляет из себя данные типа bool. Значение true означает сортировку по дате (от самой давней, до самой недавней), а значение false - сортировку по приоритетности (от самых важных, до неважных). Login - логин пользователя, записи которого надо вернуть.</li>
+</ul>
+
+
+ 
