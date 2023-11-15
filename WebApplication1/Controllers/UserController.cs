@@ -22,13 +22,11 @@ namespace WebApplication1.Controllers
         public IActionResult CreateAccount([FromBody] User user)
         {
             //Проверка на доступность имени
-            bool CheckFree = _userRepository.CheckForFree(user);
-            if (!CheckFree) return BadRequest("Пользователь с таким именем уже есть");
-            else
-            {
-                _userRepository.Add(user);
-                return Ok();
-            }
+            if (!_userRepository.CheckForFree(user)) 
+                return BadRequest("Пользователь с таким именем уже есть");
+            
+            _userRepository.Add(user);
+            return Ok();
         }
     }
 }
