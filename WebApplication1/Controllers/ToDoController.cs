@@ -21,10 +21,7 @@ namespace WebApplication1.Controllers
         [HttpGet("GetAllToDo")]
         public IActionResult GetAllToDo(bool parameter, string login)
         {
-            User? user = _repository.TakeUser(login);
-            if (user == null) return BadRequest("Пользователя с таким именем не существует");
-            else
-            {
+            
                 //Получаем уже отсортированный список по конкретному параметру
                 var list = Methods.GetListToDo(parameter, user.Id, _toDoRepository);
                 //Если количество записей больше 100, оставляем лишь ТОР-100
@@ -53,10 +50,8 @@ namespace WebApplication1.Controllers
         [HttpPost("AddToDo")]
         public IActionResult AddTodo([FromBody] TodoItem todoItem)
         {
-
-            _toDoRepository.Add(todoItem);
+            _repository.Add(todoItem);
             return Ok();
-
         }
 
     }
