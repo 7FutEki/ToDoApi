@@ -1,5 +1,7 @@
+using MapsterMapper;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
+using WebApplication1.Models;
 using WebApplication1.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>();
-builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
-builder.Services.AddScoped<IRepository, UserRepository>();
+builder.Services.AddScoped<IRepository<TodoItem>, ToDoRepository>();
+builder.Services.AddScoped<IRepository<User>, UserRepository>();
+builder.Services.AddScoped<IMapper, ServiceMapper>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
