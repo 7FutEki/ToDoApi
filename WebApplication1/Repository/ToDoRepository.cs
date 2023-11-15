@@ -15,17 +15,12 @@ namespace WebApplication1.Repository
         public bool Add(TodoItem todoItem)
         {
             _db.Add(todoItem);
-            return Save();
+            _db.SaveChanges();
         }
         //Метод получения листа записей по идентификатору пользователя
         public List<TodoItem> GetAll(int UserId)
         {
             return _db.TodoItems.Where(x =>x.UserId == UserId).ToList();
-        }
-        public bool Save()
-        {
-            var saved = _db.SaveChanges();
-            return saved > 0 ? true : false;
         }
     }
 }
