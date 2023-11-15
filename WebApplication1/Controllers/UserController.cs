@@ -10,11 +10,10 @@ namespace WebApplication1.Controllers
     public class UserController : ControllerBase
     {
         //Репозиторий для работы с таблицей пользователя в базе данных
-        private readonly IUserRepository _userRepository;
-
-        public UserController(IUserRepository userRepository)
+        private readonly IRepository<User> _repository;
+        public UserController(IRepository<User> repository)
         {
-            _userRepository = userRepository;
+            _repository = repository;
         }
 
         //Метод для создания аккаунта
@@ -22,10 +21,10 @@ namespace WebApplication1.Controllers
         public IActionResult CreateAccount([FromBody] User user)
         {
             //Проверка на доступность имени
-            if (!_userRepository.CheckForFree(user)) 
+            if (!_repository.CheckForFree(user)) 
                 return BadRequest("Пользователь с таким именем уже есть");
             
-            _userRepository.Add(user);
+            _repository.Add(user);
             return Ok();
         }
     }

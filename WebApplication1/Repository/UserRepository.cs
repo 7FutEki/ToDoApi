@@ -4,10 +4,9 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Repository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IRepository<User>
     {
         private readonly ApplicationContext _db;
-
         public UserRepository(ApplicationContext db)
         {
             _db = db;
@@ -30,7 +29,6 @@ namespace WebApplication1.Repository
         {
             var user = _db.Users
                 .FirstOrDefault(x => x.UserName == login);
-            
             return user;
         }
     }

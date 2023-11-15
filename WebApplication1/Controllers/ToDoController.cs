@@ -13,18 +13,18 @@ namespace WebApplication1.Controllers
     {
         //Репозитории для работы с таблицами пользователя и записей в базе данных
         private readonly IToDoRepository _toDoRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IRepository _repository;
 
-        public ToDoController(IToDoRepository toDoRepository, IUserRepository userRepository)
+        public ToDoController(IToDoRepository toDoRepository, IRepository repository)
         {
             _toDoRepository = toDoRepository;
-            _userRepository = userRepository;
+            _repository = repository;
         }
         //Метод для получения ТОР-100 записей с сортировкой
         [HttpGet("GetAllToDo")]
         public IActionResult GetAllToDo(bool parameter, string login)
         {
-            User? user = _userRepository.TakeUser(login);
+            User? user = _repository.TakeUser(login);
             if (user == null) return BadRequest("Пользователя с таким именем не существует");
             else
             {

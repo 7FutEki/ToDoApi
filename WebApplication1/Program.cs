@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>();
 builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRepository, UserRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

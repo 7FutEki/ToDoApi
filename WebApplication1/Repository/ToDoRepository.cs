@@ -4,15 +4,14 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Repository
 {
-    public class ToDoRepository : IToDoRepository
+    public class ToDoRepository : IRepository<TodoItem>
     {
         private readonly ApplicationContext _db;
-
         public ToDoRepository(ApplicationContext db)
         {
             _db = db;
         }
-        public bool Add(TodoItem todoItem)
+        public void Add(TodoItem todoItem)
         {
             _db.Add(todoItem);
             _db.SaveChanges();
