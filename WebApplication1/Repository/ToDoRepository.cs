@@ -1,4 +1,5 @@
-﻿using WebApplication1.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Models;
 
@@ -33,7 +34,8 @@ namespace WebApplication1.Repository
         public ICollection<TodoItem>? Get(int userId)
         {
             return _db.TodoItems
-                .Where(x =>x.UserId == userId)
+                .Include(x=> x.User)
+                .Where(x =>x.User!.Id == userId)
                 .Take(100)
                 .ToList();
         }
