@@ -20,9 +20,10 @@ namespace WebApplication1.Repository
         //Метод проверки на доступность имени
         public bool CheckForFree(User user)
         {
-            var userFromDb = _db.Users.FirstOrDefault(x => x.UserName == user.UserName);
-            if (userFromDb != null) return false;
-            else return true;
+            var userFromDb = _db.Users
+                .FirstOrDefault(x => x.UserName == user.UserName);
+            return userFromDb is null ? true : false;
+            
         }
         public bool Save()
         {
