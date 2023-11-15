@@ -7,5 +7,6 @@ namespace WebApplication1.Interfaces
     {
         public void Add(T entity);
         public T? Get(string idOrData);
+        public ICollection<T> Get(int optionsRecords);
     }
 }

@@ -24,5 +24,11 @@ namespace WebApplication1.Repository
                 .FirstOrDefault(x => x.UserName == login);
             return user;
         }
+
+        public ICollection<User> Get(int optionsRecords)
+        {
+            // TO DO?????
+            throw new NotImplementedException();
+        }
     }
 }

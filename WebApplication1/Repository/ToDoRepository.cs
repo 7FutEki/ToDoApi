@@ -24,7 +24,7 @@ namespace WebApplication1.Repository
         }
 
         //Метод получения листа записей по идентификатору пользователя
-        public List<TodoItem> GetAll(int UserId)
+        public ICollection<TodoItem> Get(int userId)
         {
             return _db.TodoItems.Where(x =>x.UserId == UserId).ToList();
         }
