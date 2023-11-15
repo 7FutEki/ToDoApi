@@ -16,6 +16,13 @@ namespace WebApplication1.Repository
             _db.Add(todoItem);
             _db.SaveChanges();
         }
+
+        public TodoItem? Get(string idOrData)
+        {
+            // TO DO ?????
+            throw new NotImplementedException();
+        }
+
         //Метод получения листа записей по идентификатору пользователя
         public List<TodoItem> GetAll(int UserId)
         {
