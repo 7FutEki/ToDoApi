@@ -17,14 +17,6 @@ namespace WebApplication1.Repository
             _db.SaveChanges();
         }
         
-        //Метод проверки на доступность имени
-        public bool CheckForFree(User user)
-        {
-            var userFromDb = _db.Users
-                .FirstOrDefault(x => x.UserName == user.UserName);
-            return userFromDb is null ? true : false;
-        }
-
         //Метод получения пользователя по логину
         public User? Get(string login)
         {
