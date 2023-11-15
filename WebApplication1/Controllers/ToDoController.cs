@@ -28,15 +28,12 @@ namespace WebApplication1.Controllers
             if (result == null || result.Count == 0)
                 return NoContent();
 
-            switch (optionsSort.ToLower())
+            result = optionsSort.ToLower() switch
             {
-                case "date":
-                    result = result.OrderBy(item => item.CreatedDate).ToList();
-                    break;
-                case "priority":
-                    result = result.OrderBy(item => item.Priority).ToList();
-                    break;
-            }
+                "date" => result.OrderBy(item => item.CreatedDate).ToList(),
+                "priority" => result.OrderBy(item => item.Priority).ToList(),
+                _ => result
+            };
 
             // TO DO MAPING RTNtoDO
         }
