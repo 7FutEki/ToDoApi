@@ -12,10 +12,10 @@ namespace WebApplication1.Repository
         {
             _db = db;
         }
-        public bool Add(User user)
+        public void Add(User user)
         {
             _db.Add(user);
-            return Save();
+            _db.SaveChanges();
         }
         //Метод проверки на доступность имени
         public bool CheckForFree(User user)
@@ -23,19 +23,15 @@ namespace WebApplication1.Repository
             var userFromDb = _db.Users
                 .FirstOrDefault(x => x.UserName == user.UserName);
             return userFromDb is null ? true : false;
-            
         }
-        public bool Save()
-        {
-            var saved = _db.SaveChanges();
-            return saved > 0 ? true : false;
-        }
+
         //Метод получения пользователя по логину
-        public User TakeUser(string login)
+        public User? TakeUser(string login)
         {
-            var user = _db.Users.FirstOrDefault(x => x.UserName == login);
-            if(user == null) return null;
-            else return user;
+            var user = _db.Users
+                .FirstOrDefault(x => x.UserName == login);
+            
+            return user;
         }
     }
 }

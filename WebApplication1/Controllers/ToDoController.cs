@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
         [HttpGet("GetAllToDo")]
         public IActionResult GetAllToDo(bool parameter, string login)
         {
-            User user = _userRepository.TakeUser(login);
+            User? user = _userRepository.TakeUser(login);
             if (user == null) return BadRequest("Пользователя с таким именем не существует");
             else
             {
