@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
         public IActionResult CreateAccount([FromBody] User user)
         {
             //Проверка на доступность имени
-            if (!_repository.CheckForFree(user)) 
+            if (!_repository.Contains(user)) 
                 return BadRequest("Пользователь с таким именем уже есть");
             
             _repository.Add(user);
