@@ -16,6 +16,7 @@ namespace WebApplication1.Repository
             _db.Add(user);
             _db.SaveChanges();
         }
+        
         //Метод проверки на доступность имени
         public bool CheckForFree(User user)
         {
@@ -25,7 +26,7 @@ namespace WebApplication1.Repository
         }
 
         //Метод получения пользователя по логину
-        public User? TakeUser(string login)
+        public User? Get(string login)
         {
             var user = _db.Users
                 .FirstOrDefault(x => x.UserName == login);
