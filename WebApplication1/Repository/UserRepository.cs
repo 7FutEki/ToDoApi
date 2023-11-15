@@ -7,16 +7,24 @@ namespace WebApplication1.Repository
     public class UserRepository : IRepository<User>
     {
         private readonly ApplicationContext _db;
+
         public UserRepository(ApplicationContext db)
         {
             _db = db;
         }
+
         public void Add(User user)
         {
             _db.Add(user);
             _db.SaveChanges();
         }
-        
+
+        public bool Contains(User entity)
+        {
+            // Дополнить условие??
+            return _db.Users.Any(user => user.UserName == entity.UserName);
+        }
+
         //Метод получения пользователя по логину
         public User? Get(string login)
         {

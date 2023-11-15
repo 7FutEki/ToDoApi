@@ -17,6 +17,12 @@ namespace WebApplication1.Repository
             _db.SaveChanges();
         }
 
+        public bool Contains(TodoItem entity)
+        {
+            // TO DO 
+            throw new NotImplementedException();
+        }
+
         public TodoItem? Get(string idOrData)
         {
             // TO DO ?????
