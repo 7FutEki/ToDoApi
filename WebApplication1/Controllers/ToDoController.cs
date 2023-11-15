@@ -13,47 +13,42 @@ namespace WebApplication1.Controllers
     {
         //Репозитории для работы с таблицами пользователя и записей в базе данных;
         private readonly IRepository<TodoItem> _repository;
+
         public ToDoController(IRepository<TodoItem> repository)
         {
             _repository = repository;
         }
+
         //Метод для получения ТОР-100 записей с сортировкой
         [HttpGet("GetAllToDo")]
-        public IActionResult GetAllToDo(bool parameter, string login)
+        public IActionResult GetAllToDo(int idUser, string optionsSort)
         {
-            
-            
-                //Получаем уже отсортированный список по конкретному параметру
-                var list = Methods.GetListToDo(parameter, user.Id, _toDoRepository);
-                //Если количество записей больше 100, оставляем лишь ТОР-100
-                if(list.Count > 100) list.RemoveRange(100, list.Count-100);
-                var RTNList = new List<RTNToDo>();
+            var result = _repository.Get(idUser)?.ToList();
 
-                //Заполняем лист на вывод
-                for (int i = 0; i < list.Count; i++)
-                {
-                    RTNList.Add(new RTNToDo
-                    {
-                        Title = list[i].Name,
-                        Priority = list[i].Priority,
-                        CreatedDate = list[i].CreatedDate,
-                        Login = user.UserName,
-                        Name = user.Name,
-                        Birthday = user.Birthday
-                    });
+            if (result == null || result.Count == 0)
+                return NoContent();
 
-                }
-            return Ok(RTNList);
+            switch (optionsSort.ToLower())
+            {
+                case "date":
+                    result = result.OrderBy(item => item.CreatedDate).ToList();
+                    break;
+                case "priority":
+                    result = result.OrderBy(item => item.Priority).ToList();
+                    break;
             }
-        }
 
-        //Метод создания записи
-        [HttpPost("AddToDo")]
-        public IActionResult AddTodo([FromBody] TodoItem todoItem)
-        {
-            _repository.Add(todoItem);
-            return Ok();
+            // TO DO MAPING RTNtoDO
         }
+    
 
+    //Метод создания записи
+    [HttpPost("AddToDo")]
+    public IActionResult AddTodo([FromBody] TodoItem todoItem)
+    {
+        _repository.Add(todoItem);
+        return Ok();
     }
+}
+
 }

@@ -30,7 +30,7 @@ namespace WebApplication1.Repository
         }
 
         //Метод получения листа записей по идентификатору пользователя
-        public ICollection<TodoItem> Get(int userId)
+        public ICollection<TodoItem>? Get(int userId)
         {
             return _db.TodoItems
                 .Where(x =>x.UserId == userId)
