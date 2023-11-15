@@ -1,4 +1,6 @@
-﻿namespace WebApplication1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication1.Models
 {
     /// <summary>
     /// Id - Идентификатор записи
@@ -9,9 +11,10 @@
     /// </summary>
     public class TodoItem
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? UserId   { get; set; }
+        public User? User { get; set; }
         public DateOnly CreatedDate { get; set;}
         public bool Priority { get; set; }
     }
