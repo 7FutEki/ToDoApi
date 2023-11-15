@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Mapster;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
@@ -35,9 +36,10 @@ namespace WebApplication1.Controllers
                 _ => result
             };
 
-            // TO DO MAPING RTNtoDO
+            /* Если название полей одиноковые, то настройка маппера не нужна, мапинг автоматически */
+            ICollection<RTNToDo> totalResult = result.Adapt<List<RTNToDo>>();
 
-            return Ok(result);
+            return Ok(totalResult);
         }
     
 
