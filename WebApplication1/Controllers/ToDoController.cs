@@ -11,13 +11,10 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class ToDoController : ControllerBase
     {
-        //Репозитории для работы с таблицами пользователя и записей в базе данных
-        private readonly IToDoRepository _toDoRepository;
-        private readonly IRepository _repository;
-
-        public ToDoController(IToDoRepository toDoRepository, IRepository repository)
+        //Репозитории для работы с таблицами пользователя и записей в базе данных;
+        private readonly IRepository<TodoItem> _repository;
+        public ToDoController(IRepository<TodoItem> repository)
         {
-            _toDoRepository = toDoRepository;
             _repository = repository;
         }
         //Метод для получения ТОР-100 записей с сортировкой
