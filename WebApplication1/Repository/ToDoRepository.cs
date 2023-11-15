@@ -34,6 +34,7 @@ namespace WebApplication1.Repository
         {
             return _db.TodoItems
                 .Where(x =>x.UserId == userId)
+                .Take(100)
                 .ToList();
         }
     }
