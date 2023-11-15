@@ -1,3 +1,5 @@
+using System.Reflection;
+using Mapster;
 using MapsterMapper;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
@@ -15,7 +17,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>();
 builder.Services.AddScoped<IRepository<TodoItem>, ToDoRepository>();
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
-builder.Services.AddScoped<IMapper, ServiceMapper>();
+var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
+// scans the assembly and gets the IRegister, adding the registration to the TypeAdapterConfig
+typeAdapterConfig.Scan(Assembly.GetExecutingAssembly());
+// register the mapper as Singleton service for my application
+var mapperConfig = new Mapper(typeAdapterConfig);
+builder.Services.AddSingleton<IMapper>(mapperConfig);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
