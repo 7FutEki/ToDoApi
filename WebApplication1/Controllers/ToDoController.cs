@@ -36,6 +36,8 @@ namespace WebApplication1.Controllers
             };
 
             // TO DO MAPING RTNtoDO
+
+            return Ok(result);
         }
     
 
